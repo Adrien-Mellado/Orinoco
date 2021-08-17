@@ -52,3 +52,4 @@ const structureProduit = `
 `
 
 positionElement2.innerHTML = structureProduit;
+

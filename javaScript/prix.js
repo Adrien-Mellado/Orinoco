@@ -36,3 +36,5 @@ fetch("http://localhost:3000/api/teddies")
         affichage_prix_4.innerHTML = price4;
 
     });
+
+    
