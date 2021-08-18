@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="javaScript/id.js" defer></script>
+    <script src="javaScript/test.js" defer></script>
     <script src="https://kit.fontawesome.com/db3ae8fecc.js" crossorigin="anonymous"></script>
     <title>Produits</title>
 </head>
+
 <body>
 
     <header>
         <nav>
-            <a href="index.html"> <li> <span><i class="fas fa-home"></i></span>Acceuil</li></a>
-            
-            <a href="panier.html"><li><span><i class="fas fa-cart-arrow-down"></i></span>Panier</li></a>
+            <a href="index.html">
+                <li> <span><i class="fas fa-home"></i></span>Acceuil</li>
+            </a>
+
+            <a href="panier.html">
+                <li><span><i class="fas fa-cart-arrow-down"></i></span>Panier</li>
+            </a>
         </nav>
     </header>
 
     <div id="box_option">
 
         <div class="bloc_option">
-
+            
+                <h2 id="nom"></h2>
+                <div id="image"></div>
+                <label for="color">Choisissez la couleur</label><select id="color"></select>
+                <p id="prix"></p>
+                <button id="produit_bouton" class="bouton_valide">Ajouter au panier</button>
+                
         </div>
 
     </div>
 
+
 </body>
+
 </html>

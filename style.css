@@ -80,13 +80,13 @@ header i {
   margin-left: 20px;
 }
 
-#box_option {
+#box_option_produit {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   flex-direction: row;
 }
-#box_option .bloc_option {
+#box_option_produit .bloc_option {
   width: 502px;
   height: 331px;
   border: 1px solid black;
@@ -95,7 +95,7 @@ header i {
   margin-bottom: 30px;
   margin-top: 13%;
 }
-#box_option img {
+#box_option_produit img {
   width: 100%;
   height: 180px;
   border-radius: 20px 20px 0px 0px;
