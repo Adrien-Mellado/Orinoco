@@ -48,6 +48,7 @@ header i {
   border-radius: 20px;
   box-shadow: 4px 4px 13px #4d4c4c;
   margin-bottom: 30px;
+  background-color: #F3E9F1;
 }
 #box_produit img {
   width: 100%;
@@ -80,26 +81,51 @@ header i {
   margin-left: 20px;
 }
 
-#box_option_produit {
+#bloc_option {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   flex-direction: row;
 }
-#box_option_produit .bloc_option {
+#bloc_option .bloc_option {
   width: 502px;
-  height: 331px;
+  height: 508px;
   border: 1px solid black;
   border-radius: 20px;
   box-shadow: 4px 4px 13px #4d4c4c;
   margin-bottom: 30px;
-  margin-top: 13%;
+  margin-top: 5%;
+  background-color: #F3E9F1;
+  border-top: 1px solid black;
 }
-#box_option_produit img {
+#bloc_option img {
   width: 100%;
-  height: 180px;
+  height: 332px;
   border-radius: 20px 20px 0px 0px;
   object-fit: cover;
+}
+#bloc_option p {
+  width: 20px;
+  font-weight: bold;
+  font-size: 35px;
+  margin-left: 20px;
+  margin-bottom: 15px;
+  margin-top: 23px;
+}
+#bloc_option h2 {
+  font-size: 30px;
+  margin-left: 20px;
+  margin-top: 2px;
+  margin-bottom: 0px;
+}
+
+#btn_ajouter {
+  width: 35%;
+  height: 43px;
+  border-radius: 13px;
+  background-color: #bb4cd1;
+  margin-left: 20px;
+  color: white;
 }
 
 /*# sourceMappingURL=style.css.map */
