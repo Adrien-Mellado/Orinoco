@@ -29,10 +29,19 @@ fetch(`http://localhost:3000/api/teddies/${id}/` )
             document.querySelector("#nom" +j).innerHTML = reponse2.name; 
             document.querySelector("#prix"  +j).innerHTML = reponse2.price* 0.01 + "€";
             document.querySelector("#image" +j ).innerHTML = ` <img src="${reponse2.imageUrl}"></a>`;
+           
+           // choix de couleur // 
+            document.querySelector("#couleur"+j  ).innerHTML = 
+            `<option id="couleur_option" value="0">${reponse2.colors[0]}</option>
+            <option id="couleur_option" value="1">${reponse2.colors[1]}</option>
+            <option id="couleur_option" value="2">${reponse2.colors[2]}</option>
+            <option id="couleur_option" value="3">${reponse2.colors[3]}</option> `;
+          
             //document.querySelector("#lien" + j).innerHTML= `<a href="./produit.html?id=${...}${element._id}">`;//
            console.log(reponse2);
             j++;       
             
+
         
         
 
