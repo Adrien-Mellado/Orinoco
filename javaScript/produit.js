@@ -31,22 +31,57 @@ fetch(`http://localhost:3000/api/teddies/${id}/` )
             document.querySelector("#image" +j ).innerHTML = ` <img src="${reponse2.imageUrl}"></a>`;
            
            // choix de couleur // 
-            document.querySelector("#couleur"+j  ).innerHTML = 
-            `<option id="couleur_option" value="0">${reponse2.colors[0]}</option>
-            <option id="couleur_option" value="1">${reponse2.colors[1]}</option>
-            <option id="couleur_option" value="2">${reponse2.colors[2]}</option>
-            <option id="couleur_option" value="3">${reponse2.colors[3]}</option> `;
+            document.querySelector("#couleur").innerHTML = 
+            ` <option  value="couleur_0">${reponse2.colors[0]}</option>
+            <option value="couleur_1">${reponse2.colors[1]}</option>
+            <option  value="couleur_2">${reponse2.colors[2]}</option>
+            <option  value="couleur_3">${reponse2.colors[3]}</option> </select>`;
           
             //document.querySelector("#lien" + j).innerHTML= `<a href="./produit.html?id=${...}${element._id}">`;//
            console.log(reponse2);
             j++;       
             
+            
+            //----------------  Gestion Du Panier ---------------------------//
 
-        
-        
+            //Selection de l'id du form //
+            let idform = document.querySelector("#couleur");
+            console.log(idform);
 
-        
-        
-        
-        
+            // Mettre le choix dans une variable // 
+            let choixForm  = idform.value;
+            console.log(choixForm);
+
+
+            //bouton ajouter au Panier // 
+            let btn_ajouter = document.querySelector("#btn_ajouter");
+
+            // ecouter le bouton et ajouter le panier // 
+            btn_ajouter.addEventListener("click", (event)=>{
+                event.preventDefault();
+
+
+
+                  // Mettre le choix dans une variable // 
+                let choixForm  = idform.value;
+                console.log(choixForm);
+
+
+
+                // recuperation valeurs formulaire // 
+
+                let Produit_Panier = {
+                    nomProduit: reponse2.name,
+                    prix: reponse2.price* 0.01 + "€",
+                    couleur: choixForm,
+                    id : reponse2._id,
+                } 
+                console.log(Produit_Panier);
+            });
+
+            
+            
     });
+
+
+    
