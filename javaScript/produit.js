@@ -27,7 +27,7 @@ fetch(`http://localhost:3000/api/teddies/${id}/` )
         let j = 0;
         
             document.querySelector("#nom" +j).innerHTML = reponse2.name; 
-            document.querySelector("#prix"  +j).innerHTML = reponse2.price* 0.01 + "€";
+            document.querySelector("#prix"  +j).innerHTML = reponse2.price* 0.01 + `€` ;
             document.querySelector("#image" +j ).innerHTML = ` <img src="${reponse2.imageUrl}"></a>`;
            
            // choix de couleur // 
@@ -72,7 +72,7 @@ fetch(`http://localhost:3000/api/teddies/${id}/` )
 
                 let Produit_Panier = {
                     nomProduit: reponse2.name,
-                    prix: reponse2.price* 0.01 + "€",
+                    prix: reponse2.price* 0.01  ,
                     couleur: choixForm,
                     id : reponse2._id,
                 } 
