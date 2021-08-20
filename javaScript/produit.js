@@ -77,10 +77,74 @@ fetch(`http://localhost:3000/api/teddies/${id}/` )
                     id : reponse2._id,
                 } 
                 console.log(Produit_Panier);
+
+
+                //  stoker les valeur dans local storage // 
+
+            // delclaration de la variable " produitEnregistreDansLocalStorage" avec les key et value // 
+            // JSON.parse  pour convertir les donne au format JSON En objet javascript // 
+            let ProduitEnregistreDansLocalStorage= JSON.parse(localStorage.getItem("produit"));
+
+
+                // fonction popup // 
+                let popupConfirmation = () => {
+                    if(window.confirm(`${reponse2.name} couleur : ${choixForm} a bien été ajouté au panier 
+Consulter le panier OK ou revenir à L'accueil ANNULER`)){
+                        window.location.href = "panier.html";
+                    }else{
+                        window.location.href = "index.html";
+
+                    }
+                }
+                    
+                // Ajout produit dans le local storage // 
+                let ajoutProduuit = () => {
+                    // ajout dans le tableau de l'objet avec les values choisi //
+                    ProduitEnregistreDansLocalStorage.push(Produit_Panier);
+                    // la transformation en format JSON et envoyer dans le key "produit" du local storage //
+                    localStorage.setItem("produit",JSON.stringify(ProduitEnregistreDansLocalStorage));
+                }
+
+            // si il y a deja des produit dans le local // 
+
+            if(ProduitEnregistreDansLocalStorage){
+                ajoutProduuit();
+                popupConfirmation();
+
+            }
+            // si il y a pas de produit dans le local //
+            else{
+                ProduitEnregistreDansLocalStorage = [];
+                ajoutProduuit();
+                popupConfirmation();
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
             });
 
             
-            
+
+
+
+
+
+
+
+
+
+
     });
 
 
