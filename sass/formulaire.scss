@@ -1,0 +1,36 @@
+#formulaire_commande{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    border: 2px solid black;
+    background-color: #f3e9f1;
+    margin-top: 20px;
+
+
+
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid black;
+
+        width: 100%;
+        
+    }
+
+
+    label{
+        margin-bottom: 10px;
+    }
+
+    input{
+        width: 90%;
+        height: 50px;
+    }
+
+    textarea{
+        width:90%;
+    }
+}

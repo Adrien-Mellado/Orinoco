@@ -1,0 +1,39 @@
+#bloc_panier{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    border: 2px solid black;
+    margin-top: 20px;
+
+
+    .container_recapitulatif{
+        width: 646px;
+       display: flex; 
+       justify-content: space-around;
+       flex-direction: row;
+       flex-wrap: nowrap;
+       //background-color: blanchedalmond;//
+
+       font-size: 25px;
+       margin-bottom: 10px;
+
+    }
+
+    .container_montant_total{
+        width: 579px;
+    
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        //background-color: rgba(128, 127, 125, 0.178);//
+
+        font-size: 25px;
+
+        margin-top: 20px;
+        margin-bottom: 10px;
+     }
+}
+
+
