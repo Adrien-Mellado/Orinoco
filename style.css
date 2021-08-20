@@ -133,4 +133,67 @@ header i {
   color: white;
 }
 
+#btn_envoyer_formulaire {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  height: 30px;
+}
+
+#bloc_panier {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 2px solid black;
+  margin-top: 20px;
+}
+#bloc_panier .container_recapitulatif {
+  width: 646px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+#bloc_panier .container_montant_total {
+  width: 579px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-size: 25px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#formulaire_commande {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  border: 2px solid black;
+  background-color: #f3e9f1;
+  margin-top: 20px;
+}
+#formulaire_commande form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  width: 100%;
+}
+#formulaire_commande label {
+  margin-bottom: 10px;
+}
+#formulaire_commande input {
+  width: 90%;
+  height: 50px;
+}
+#formulaire_commande textarea {
+  width: 90%;
+}
+
 /*# sourceMappingURL=style.css.map */
