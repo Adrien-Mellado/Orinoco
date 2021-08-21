@@ -164,26 +164,56 @@ let btn_envoyer_formulaire = document.querySelector("#btn_envoyer_formulaire");
 
 
 
-//---------------------------Addenvestlistener----------------------//
+//---------------------------------------------Addenvestlistener---------------------------------------------//
 btn_envoyer_formulaire.addEventListener("click", (event) => {
     event.preventDefault();
 
-    // Controle Formulaire // 
+//--------------------------------------------- Controle Formulaire--------------------------------------------- // 
 
-    let regle_prenom_nom_ville = (value) => {
-        return /^[A-Za-z] {3,20}$/.test(value);
+// ---------------------------------------------texte alerte ---------------------------------------------// 
+    let text_Alerte = (value) =>{
+        return `${value}: Chiffre et symbole ne sont pas autorisé \n Ne pas depasse 20 caracteres , minimum 3 caracteres`;
     }
 
+    let text_Alerte_code_postal = (value) =>{
+        return `${value}: Uniquement les chiffres sont autorisé \n Ne pas depasse 5 chiffres `;
+    }
+// ---------------------------------------------Fin Texte alerte ---------------------------------------------//
+
+// ---------------------------------------------regle de controle ---------------------------------------------//
+    let regle_prenom_nom_ville = (value) => {
+        return /^[A-Za-z]{3,20}$/.test(value);
+    }
+
+    let regle_code_postal = (value) =>{
+        return /^[0-9]{5}$/.test(value);
+    }
+
+// ---------------------------------------------fin regle de controle ---------------------------------------------// 
+
+
+//--------------------------------------------- debut des controles --------------------------------------------- // 
     function prenom_controle() {
 
         let le_prenom = prenom.value;
         if (regle_prenom_nom_ville(le_prenom)) {
             return true;
         } else {
-            alert("Chiffre et symbole ne sont pas autorisé \n Ne pas depasse 20 caracteres , minimum 3 caracteres");
+            alert(text_Alerte("Prenom"));
             return false;
-        };
-    }
+        }
+    };
+
+    function ville_controle() {
+
+        let la_ville = ville.value;
+        if (regle_prenom_nom_ville(la_ville)) {
+            return true;
+        } else {
+            alert(text_Alerte("ville"));
+            return false;
+        }
+    };
 
     function nom_controle() {
 
@@ -191,47 +221,62 @@ btn_envoyer_formulaire.addEventListener("click", (event) => {
         if (regle_prenom_nom_ville(le_nom)) {
             return true;
         } else {
-            alert("Chiffre et symbole ne sont pas autorisé \n Ne pas depasse 20 caracteres , minimum 3 caracteres");
+            alert(text_Alerte("Nom"));
             return false;
-        };
+        }
+    };
+
+
+    function code_postal_controle() {
+
+        let le_code_postal = code_postal.value;
+        if (regle_code_postal(le_code_postal)) {
+            return true;
+        } else {
+            alert(text_Alerte_code_postal("Code postal"));
+            return false;
+        }
     }
+// ---------------------------------------------fin de controle ---------------------------------------------// 
 
 
-    if (prenom_controle() , nom_controle()) {
+//---------------------------------------------verification que les champ du formulaire soit bien remplie ----------------------------------------------------// 
+
+    if (prenom_controle() && nom_controle() && code_postal_controle() && ville_controle()) {
+
+        
+         //recuperation des valeur du formulaire  // 
+
+        let formulaire_value = {
+            prenom: document.querySelector("#prenom").value,
+            nom: document.querySelector("#nom").value,
+            adresse: document.querySelector("#adresse").value,
+            ville: document.querySelector("#ville").value,
+            code_postal: document.querySelector("#code_postal").value,
+            email: document.querySelector("#email").value,
+        };
+
+        
 
         // metre objet fomulaire_value dans le local storage // 
         localStorage.setItem("formulaire_value", JSON.stringify(formulaire_value));
 
+
+        
+
+        //mettre les value du formulaire et objet a envoyer vers le serveur // 
+        let aEnvoyer = {
+            ProduitEnregistreDansLocalStorage,
+            formulaire_value,
+        };
+
     } else {
         alert("Veuillez bien remplir le formulaire");
-    }
-
-
-
-
-
-
-
-
-    // recuperation des valeur du formulaire  // 
-
-    let formulaire_value = {
-        prenom: document.querySelector("#prenom").value,
-        nom: document.querySelector("#nom").value,
-        adresse: document.querySelector("#adresse").value,
-        ville: document.querySelector("#ville").value,
-        code_postal: document.querySelector("#code_postal").value,
-        email: document.querySelector("#email").value,
-    }
-
-
-
-
-    //mettre les value du formulaire et objet a envoyer vers le serveur // 
-    let aEnvoyer = {
-        ProduitEnregistreDansLocalStorage,
-        formulaire_value,
     };
+
+//--------------------------------------------- FIN verification que les champ du formulaire soit bien remplie ----------------------------------------------------// 
+
+
 
 })
 
