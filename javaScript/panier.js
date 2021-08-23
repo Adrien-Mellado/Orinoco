@@ -270,6 +270,7 @@ btn_envoyer_formulaire.addEventListener("click", (event) => {
             formulaire_value,
         };
 
+        
     } else {
         alert("Veuillez bien remplir le formulaire");
     };
@@ -277,8 +278,7 @@ btn_envoyer_formulaire.addEventListener("click", (event) => {
 //--------------------------------------------- FIN verification que les champ du formulaire soit bien remplie ----------------------------------------------------// 
 
 
-
-})
+});
 
 
 
