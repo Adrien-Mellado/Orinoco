@@ -3,18 +3,14 @@
 
 
 let queryString_url_id = window.location.search;
-//console.log(queryString_url_id);//
 
-// extraire juste le id methode 1  // 
-/*let leid = queryString_url_id.slice(4);
-console.log(leid);*/
 
 // extraire juste le id methode 2 // 
 let urlSearchparams = new URLSearchParams(queryString_url_id);
-//console.log(urlSearchparams);//
+
 
 let id = urlSearchparams.get("id");
-//console.log(id);//
+
 
 // affichage du produit qui a ete selectione par l' id //
 
@@ -37,20 +33,17 @@ fetch(`http://localhost:3000/api/teddies/${id}/` )
             <option  value="couleur_2">${reponse2.colors[2]}</option>
             <option  value="couleur_3">${reponse2.colors[3]}</option> </select>`;
           
-            //document.querySelector("#lien" + j).innerHTML= `<a href="./produit.html?id=${...}${element._id}">`;//
-           console.log(reponse2);
             j++;       
-            
             
             //----------------  Gestion Du Panier ---------------------------//
 
             //Selection de l'id du form //
             let idform = document.querySelector("#couleur");
-            console.log(idform);
+    
 
             // Mettre le choix dans une variable // 
             let choixForm  = idform.value;
-            console.log(choixForm);
+          
 
 
             //bouton ajouter au Panier // 
@@ -64,7 +57,7 @@ fetch(`http://localhost:3000/api/teddies/${id}/` )
 
                   // Mettre le choix dans une variable // 
                 let choixForm  = idform.value;
-                console.log(choixForm);
+                
 
 
 
@@ -76,7 +69,7 @@ fetch(`http://localhost:3000/api/teddies/${id}/` )
                     couleur: choixForm,
                     id : reponse2._id,
                 } 
-                console.log(Produit_Panier);
+                
 
 
                 //  stoker les valeur dans local storage // 
@@ -87,18 +80,16 @@ fetch(`http://localhost:3000/api/teddies/${id}/` )
 
 
                 // fonction popup // 
-                let popupConfirmation = () => {
-                    if(window.confirm(`${reponse2.name} couleur : ${choixForm} a bien été ajouté au panier 
-Consulter le panier OK ou revenir à L'accueil ANNULER`)){
-                        window.location.href = "panier.html";
-                    }else{
-                        window.location.href = "index.html";
+                function popupConfirmation() {
 
-                    }
+                    let confirmString = reponse2.name + ` couleur : ` + choixForm;
+                    confirmSting = `a bien été ajouté au panier \n Consulter le panier OK ou revenir à L'accueil ANNULER`;
+
+                    window.location.href = window.confirm(confirmString )? "panier.html":  "index.html";
                 }
                     
                 // Ajout produit dans le local storage // 
-                let ajoutProduuit = () => {
+                function ajoutProduuit()  {
                     // ajout dans le tableau de l'objet avec les values choisi //
                     ProduitEnregistreDansLocalStorage.push(Produit_Panier);
                     // la transformation en format JSON et envoyer dans le key "produit" du local storage //
@@ -108,8 +99,9 @@ Consulter le panier OK ou revenir à L'accueil ANNULER`)){
             // si il y a deja des produit dans le local // 
 
             if(ProduitEnregistreDansLocalStorage){
-                ajoutProduuit();
                 popupConfirmation();
+                ajoutProduuit();
+                
 
             }
             // si il y a pas de produit dans le local //
@@ -119,18 +111,6 @@ Consulter le panier OK ou revenir à L'accueil ANNULER`)){
                 popupConfirmation();
 
             }
-
-
-
-
-
-
-
-
-
-
-
-
 
             });
 
