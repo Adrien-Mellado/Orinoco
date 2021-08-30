@@ -1,7 +1,7 @@
 // delclaration de la variable " produitEnregistreDansLocalStorage" avec les key et value // 
 // JSON.parse  pour convertir les donne au format JSON En objet javascript // 
 let ProduitEnregistreDansLocalStorage = JSON.parse(localStorage.getItem("produit"));
-console.log(ProduitEnregistreDansLocalStorage);
+
 
 
 
@@ -49,31 +49,26 @@ if (ProduitEnregistreDansLocalStorage === null) {
 
 //------------------------------------------------------------------Bouton suprimer------------------------------------------------------------------------//
 
-/*let btn_supprimer = document.querySelectorAll(".btn_supprimer");
+let btn_supprimer = document.querySelectorAll(".btn_supprimer");
 
 
-for ( let l=0 ; l < btn_supprimer.length; l++ ){
-
-    
+for ( let l= 0 ; l < btn_supprimer.length; l++ ){
 
     btn_supprimer[l].addEventListener("click", (event)=>{
         event.preventDefault();
+        window.location.reload();
 
-        //supprimer le produit par l'id // 
-        let id_selectionner_suppression = ProduitEnregistreDansLocalStorage[l].reponse2._id;
-        console.log(id_selectionner_suppression);
+        let id_selectionner_suppression = ProduitEnregistreDansLocalStorage[l].id;
 
-
-        //supprimer le produit // 
-        ProduitEnregistreDansLocalStorage = ProduitEnregistreDansLocalStorage.filter((el)=> el.reponse2._id !== id_selectionner_suppression);
+        ProduitEnregistreDansLocalStorage = ProduitEnregistreDansLocalStorage.filter((el) => el.id !== id_selectionner_suppression);
         
-        // envoie la variable dans le local // 
-        // JSON.parse  pour convertir les donne au format JSON En objet javascript // 
-        let ProduitEnregistreDansLocalStorage= JSON.parse(localStorage.getItem("produit"));
+
+         // envoie la variable //
+         localStorage.setItem("produit",JSON.stringify(ProduitEnregistreDansLocalStorage));
 
 
-    });
-};*/
+    })
+}
 
 //------------------------------------------------------------------FIN Bouton suprimer----------------------------------------------------------------------//
 
@@ -91,13 +86,13 @@ for (let m = 0; m < ProduitEnregistreDansLocalStorage.length; m++) {
     let prix_produit_panier = ProduitEnregistreDansLocalStorage[m].prix;
     // metre les prix dans la variable //
     prix_total.push(prix_produit_panier);
-    console.log(prix_total);
+    
 }
 
 // additionner les prix avec la methode reduce//
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 const prixTotal = prix_total.reduce(reducer, 0);
-console.log(prixTotal);
+
 
 
 // afficher total // 
@@ -119,7 +114,7 @@ affichage.insertAdjacentHTML("beforeend", affichage_prix_total);
 
 let position_element = document.querySelector("#bloc_panier");
 
-let affichage_formulaire = () => {
+function  affichage_formulaire() {
     let structure_formulaire = `
     <div id="formulaire_commande">
         <h2> Remplissez le formulaire pour valider la commande </h2>
@@ -195,48 +190,76 @@ btn_envoyer_formulaire.addEventListener("click", (event) => {
 //--------------------------------------------- debut des controles --------------------------------------------- // 
     function prenom_controle() {
 
-        let le_prenom = prenom.value;
+        return (regle_prenom_nom_ville(prenom.value));
+        
+
+        /*let le_prenom = prenom.value;
         if (regle_prenom_nom_ville(le_prenom)) {
             return true;
         } else {
             alert(text_Alerte("Prenom"));
             return false;
-        }
+        }*/
     };
 
+    if(!prenom_controle())
+        alert(text_Alerte("Prenom"));
+
+
+
+
+    
     function ville_controle() {
 
-        let la_ville = ville.value;
+
+        return (regle_prenom_nom_ville(ville.value));
+
+        /*let la_ville = ville.value;
         if (regle_prenom_nom_ville(la_ville)) {
             return true;
         } else {
             alert(text_Alerte("ville"));
             return false;
-        }
+        }*/
     };
+
+    if(!ville_controle())
+        alert(text_Alerte("Ville"));
+
+
 
     function nom_controle() {
 
-        let le_nom = nom.value;
+        return (regle_prenom_nom_ville(nom.value));
+        
+        /*let le_nom = nom.value;
         if (regle_prenom_nom_ville(le_nom)) {
             return true;
         } else {
             alert(text_Alerte("Nom"));
             return false;
-        }
+        }*/
     };
+
+    if(!nom_controle())
+        alert(text_Alerte("Nom"));
 
 
     function code_postal_controle() {
 
-        let le_code_postal = code_postal.value;
+        return (regle_code_postal(code_postal.value));
+        
+        /*let le_code_postal = code_postal.value;
         if (regle_code_postal(le_code_postal)) {
             return true;
         } else {
             alert(text_Alerte_code_postal("Code postal"));
             return false;
-        }
+        }*/
     }
+
+    if(!code_postal_controle())
+        alert(text_Alerte("Code postal"));
 // ---------------------------------------------fin de controle ---------------------------------------------// 
 
 
