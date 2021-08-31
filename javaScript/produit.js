@@ -1,20 +1,14 @@
 
 // recupération de l'id dans l'url //
 
-
 let queryString_url_id = window.location.search;
-
 
 // extraire juste le id methode 2 // 
 let urlSearchparams = new URLSearchParams(queryString_url_id);
 
-
 let id = urlSearchparams.get("id");
 
-
 // affichage du produit qui a ete selectione par l' id //
-
-
 
 fetch(`http://localhost:3000/api/teddies/${id}/` )
     .then(reponse => reponse.json())
@@ -40,12 +34,9 @@ fetch(`http://localhost:3000/api/teddies/${id}/` )
             //Selection de l'id du form //
             let idform = document.querySelector("#couleur");
     
-
             // Mettre le choix dans une variable // 
             let choixForm  = idform.value;
           
-
-
             //bouton ajouter au Panier // 
             let btn_ajouter = document.querySelector("#btn_ajouter");
 
@@ -53,14 +44,9 @@ fetch(`http://localhost:3000/api/teddies/${id}/` )
             btn_ajouter.addEventListener("click", (event)=>{
                 event.preventDefault();
 
-
-
                   // Mettre le choix dans une variable // 
                 let choixForm  = idform.value;
                 
-
-
-
                 // recuperation valeurs formulaire // 
 
                 let Produit_Panier = {
@@ -70,14 +56,11 @@ fetch(`http://localhost:3000/api/teddies/${id}/` )
                     id : reponse2._id,
                 } 
                 
-
-
                 //  stoker les valeur dans local storage // 
 
             // delclaration de la variable " produitEnregistreDansLocalStorage" avec les key et value // 
             // JSON.parse  pour convertir les donne au format JSON En objet javascript // 
             let ProduitEnregistreDansLocalStorage= JSON.parse(localStorage.getItem("produit"));
-
 
                 // fonction popup // 
                 function popupConfirmation() {
@@ -96,35 +79,23 @@ fetch(`http://localhost:3000/api/teddies/${id}/` )
                     localStorage.setItem("produit",JSON.stringify(ProduitEnregistreDansLocalStorage));
                 }
 
-            // si il y a deja des produit dans le local // 
+                // si il y a deja des produit dans le local // 
 
-            if(ProduitEnregistreDansLocalStorage){
-                popupConfirmation();
-                ajoutProduuit();
+                if(ProduitEnregistreDansLocalStorage){
+                    popupConfirmation();
+                    ajoutProduuit();
                 
 
-            }
-            // si il y a pas de produit dans le local //
-            else{
-                ProduitEnregistreDansLocalStorage = [];
-                ajoutProduuit();
-                popupConfirmation();
+                }
 
-            }
+                // si il y a pas de produit dans le local //
+                else{
+                    ProduitEnregistreDansLocalStorage = [];
+                    ajoutProduuit();
+                    popupConfirmation();
 
+                }
             });
-
-            
-
-
-
-
-
-
-
-
-
-
     });
 
 

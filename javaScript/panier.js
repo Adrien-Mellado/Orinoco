@@ -1,16 +1,15 @@
 // delclaration de la variable " produitEnregistreDansLocalStorage" avec les key et value // 
+
 // JSON.parse  pour convertir les donne au format JSON En objet javascript // 
 let ProduitEnregistreDansLocalStorage = JSON.parse(localStorage.getItem("produit"));
-
-
 
 
 //---------------------------------------------------afficher les produit au panier-----------------------------------------------------------------------------// 
 
 let affichage = document.querySelector("#bloc_panier");
 
-
 // si le panier est vide // 
+
 if (ProduitEnregistreDansLocalStorage === null) {
     let paniervide = `<div class="container_panier_vide">
                         <div> Le panier est vide </div>
@@ -18,7 +17,6 @@ if (ProduitEnregistreDansLocalStorage === null) {
                     `;
 
     affichage.innerHTML = paniervide;
-
 
 } else {
 
@@ -32,6 +30,7 @@ if (ProduitEnregistreDansLocalStorage === null) {
             </div>
             `;
     }
+    
     if (k == ProduitEnregistreDansLocalStorage.length) {
         // affichage //
         affichage.innerHTML = structureProduitPanier;
@@ -40,17 +39,16 @@ if (ProduitEnregistreDansLocalStorage === null) {
 
 }
 
-//---------------------------------------------------FIN afficher les produit au panier-----------------------------------------------------------------------------// 
+// FIN afficher les produit au panier // 
 
 
 
 
 
 
-//------------------------------------------------------------------Bouton suprimer------------------------------------------------------------------------//
+// Bouton suprimer //
 
 let btn_supprimer = document.querySelectorAll(".btn_supprimer");
-
 
 for ( let l= 0 ; l < btn_supprimer.length; l++ ){
 
@@ -66,59 +64,55 @@ for ( let l= 0 ; l < btn_supprimer.length; l++ ){
          // envoie la variable //
          localStorage.setItem("produit",JSON.stringify(ProduitEnregistreDansLocalStorage));
 
-
     })
 }
 
-//------------------------------------------------------------------FIN Bouton suprimer----------------------------------------------------------------------//
+// FIN Bouton suprimer //
 
 
 
 
 
 
-// -----------------------------------------------------------montant total du panier -----------------------------------------------------------------------// 
+// montant total du panier // 
 
 let prix_total = [];
 
 // aller chercher les prix // 
+
 for (let m = 0; m < ProduitEnregistreDansLocalStorage.length; m++) {
-    let prix_produit_panier = ProduitEnregistreDansLocalStorage[m].prix;
+
     // metre les prix dans la variable //
-    prix_total.push(prix_produit_panier);
+    prix_total.push(ProduitEnregistreDansLocalStorage[m].prix);
     
 }
 
 // additionner les prix avec la methode reduce//
-const reducer = (accumulator, currentValue) => accumulator + currentValue;
-const prixTotal = prix_total.reduce(reducer, 0);
-
-
+let reducer = (accumulator, currentValue) => accumulator + currentValue;
+let prixTotal = prix_total.reduce(reducer, 0);
 
 // afficher total // 
-let affichage_prix_total = `
-<div class="affichage_prix_total"> Le prix total est de : ${prixTotal} € </div>
+let affichage_prix_total = `<div class="affichage_prix_total"> Le prix total est de : ${prixTotal} € </div>`
 
-`
 // injextion page html // 
 affichage.insertAdjacentHTML("beforeend", affichage_prix_total);
 
-// ----------------------------------------------------------- FIN Montant total du panier -----------------------------------------------------------------------// 
+//  FIN Montant total du panier // 
 
 
 
 
 
 
-//--------------------------------------------------------------Formulaire--------------------------------------------------------------------------------------- // 
+// Formulaire // 
 
 let position_element = document.querySelector("#bloc_panier");
 
 function  affichage_formulaire() {
+
     let structure_formulaire = `
     <div id="formulaire_commande">
         <h2> Remplissez le formulaire pour valider la commande </h2>
-
 
         <form>
             <label for="prenom">Prénom : </label>
@@ -143,11 +137,11 @@ function  affichage_formulaire() {
             </button>
 
         </form>
+
     </div>`;
 
     // injection HTM //
     position_element.insertAdjacentHTML("afterend", structure_formulaire);
-
 
 }
 
@@ -159,115 +153,111 @@ let btn_envoyer_formulaire = document.querySelector("#btn_envoyer_formulaire");
 
 
 
-//---------------------------------------------Addenvestlistener---------------------------------------------//
+
+
+
+// Addenvestlistener //
 btn_envoyer_formulaire.addEventListener("click", (event) => {
     event.preventDefault();
 
-//--------------------------------------------- Controle Formulaire--------------------------------------------- // 
+// Controle Formulaire // 
 
-// ---------------------------------------------texte alerte ---------------------------------------------// 
-    let text_Alerte = (value) =>{
+// texte alerte // 
+    function text_Alerte (value) {
         return `${value}: Chiffre et symbole ne sont pas autorisé \n Ne pas depasse 20 caracteres , minimum 3 caracteres`;
     }
 
-    let text_Alerte_code_postal = (value) =>{
+    function text_Alerte_code_postal (value) {
         return `${value}: Uniquement les chiffres sont autorisé \n Ne pas depasse 5 chiffres `;
     }
-// ---------------------------------------------Fin Texte alerte ---------------------------------------------//
 
-// ---------------------------------------------regle de controle ---------------------------------------------//
-    let regle_prenom_nom_ville = (value) => {
+    function text_Alerte_email (value){
+        return `${value}: Votre Email n'est pas valide . `;
+    }
+// Fin Texte alerte //
+
+
+
+
+
+
+// regle de controle //
+   function controleChampTexte (value) {
         return /^[A-Za-z]{3,20}$/.test(value);
     }
 
-    let regle_code_postal = (value) =>{
+    function controleChampPostal (value) {
         return /^[0-9]{5}$/.test(value);
     }
 
-// ---------------------------------------------fin regle de controle ---------------------------------------------// 
+    function ControleEmail (value) {
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
+    }
+// fin regle de controle // 
 
 
-//--------------------------------------------- debut des controles --------------------------------------------- // 
+
+
+
+
+// debut des controles  // 
+
     function prenom_controle() {
 
-        return (regle_prenom_nom_ville(prenom.value));
-        
-
-        /*let le_prenom = prenom.value;
-        if (regle_prenom_nom_ville(le_prenom)) {
-            return true;
-        } else {
-            alert(text_Alerte("Prenom"));
-            return false;
-        }*/
-    };
-
-    if(!prenom_controle())
-        alert(text_Alerte("Prenom"));
-
-
-
-
+        return (controleChampTexte(prenom.value));
     
+    } 
+        if (!prenom_controle())
+        alert (text_Alerte("Prenom"));
+    
+
+
     function ville_controle() {
 
+        return (controleChampTexte(ville.value));
 
-        return (regle_prenom_nom_ville(ville.value));
-
-        /*let la_ville = ville.value;
-        if (regle_prenom_nom_ville(la_ville)) {
-            return true;
-        } else {
-            alert(text_Alerte("ville"));
-            return false;
-        }*/
-    };
-
-    if(!ville_controle())
+    } 
+        if (!ville_controle())
         alert(text_Alerte("Ville"));
-
+   
 
 
     function nom_controle() {
 
-        return (regle_prenom_nom_ville(nom.value));
-        
-        /*let le_nom = nom.value;
-        if (regle_prenom_nom_ville(le_nom)) {
-            return true;
-        } else {
-            alert(text_Alerte("Nom"));
-            return false;
-        }*/
-    };
-
-    if(!nom_controle())
+        return (controleChampTexte(nom.value));
+    }
+        if (!nom_controle())
         alert(text_Alerte("Nom"));
+
 
 
     function code_postal_controle() {
 
-        return (regle_code_postal(code_postal.value));
-        
-        /*let le_code_postal = code_postal.value;
-        if (regle_code_postal(le_code_postal)) {
-            return true;
-        } else {
-            alert(text_Alerte_code_postal("Code postal"));
-            return false;
-        }*/
+        return (controleChampPostal(code_postal.value));
     }
-
-    if(!code_postal_controle())
-        alert(text_Alerte("Code postal"));
-// ---------------------------------------------fin de controle ---------------------------------------------// 
+        if (!code_postal_controle())
+        alert(text_Alerte_code_postal("Code postal"));
 
 
-//---------------------------------------------verification que les champ du formulaire soit bien remplie ----------------------------------------------------// 
 
-    if (prenom_controle() && nom_controle() && code_postal_controle() && ville_controle()) {
+    function email_controle(){
 
-        
+        return (ControleEmail(email.value));
+    }
+        if (!email_controle())
+        alert(text_Alerte_email("email"));
+
+// fin de controle // 
+
+
+
+
+
+
+// verification que les champ du formulaire soit bien remplie // 
+
+    if (prenom_controle() && nom_controle() && code_postal_controle() && ville_controle() && email_controle()) {
+
          //recuperation des valeur du formulaire  // 
 
         let formulaire_value = {
@@ -279,31 +269,27 @@ btn_envoyer_formulaire.addEventListener("click", (event) => {
             email: document.querySelector("#email").value,
         };
 
-        
-
         // metre objet fomulaire_value dans le local storage // 
         localStorage.setItem("formulaire_value", JSON.stringify(formulaire_value));
-
-
-        
+        localStorage.setItem("prixTotal", JSON.stringify(prixTotal));
 
         //mettre les value du formulaire et objet a envoyer vers le serveur // 
         let aEnvoyer = {
             ProduitEnregistreDansLocalStorage,
             formulaire_value,
+            prixTotal,
         };
 
-        
+        window.location = "confirmation.html";
+
+
+
     } else {
         alert("Veuillez bien remplir le formulaire");
     };
-
-//--------------------------------------------- FIN verification que les champ du formulaire soit bien remplie ----------------------------------------------------// 
-
-
 });
 
-
+// FIN verification que les champ du formulaire soit bien remplie // 
 
 
 
