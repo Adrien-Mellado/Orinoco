@@ -23,4 +23,14 @@ function  affichage_recap() {
 // affichage recap // 
 affichage_recap();
 
+// effacer tout le local //
+
+function enleverCleLocalStorage (key){
+    localStorage.removeItem(key);
+    
+};
+
+enleverCleLocalStorage("prixTotal");
+enleverCleLocalStorage("produit");
+enleverCleLocalStorage("reponse2._id");
 
